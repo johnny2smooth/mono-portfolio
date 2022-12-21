@@ -5,27 +5,63 @@ import AboutMe from '../components/AboutMe.astro';
 import DarkMode from '../components/DarkMode.astro';
 ---
 
-<Layout title="Welcome" >
+<Layout title="Welcome">
   <nav class="flex justify-between py-2 items-baseline">
-    <button class="hover:rounded-full hover:border-4 hover:border-slate-200 text-4xl p-1">🌐</button>
+    <button
+      class="hover:rounded-full hover:border-4 hover:border-slate-200 text-4xl p-1"
+      >🌐</button
+    >
     <ul class="flex flex-wrap gap-4">
       <li class="inline-block">
-        <a href="/home" class="text-md hover:text-slate-200 underline-offset-2 underline">Hi</a>
+        <a
+          href="/home"
+          class="text-md hover:text-slate-200 underline-offset-2 underline"
+          >Hi</a
+        >
       </li>
       <li class="inline-block">
-        <a href="/home" class="text-md text-slate-400 hover:text-slate-200">Work</a>
+        <a href="/home" class="text-md text-slate-400 hover:text-slate-200"
+          >Work</a
+        >
       </li>
       <li class="inline-block">
-        <a href="/home" class="text-md text-slate-400 hover:text-slate-200">Writing</a>
+        <a href="/home" class="text-md text-slate-400 hover:text-slate-200"
+          >Writing</a
+        >
       </li>
     </ul>
     <DarkMode />
   </nav>
   <main class="max-w-prose flex flex-wrap gap-4">
     <Intro />
-    <AboutMe />
+    <!-- <AboutMe /> -->
+    <p class="bionic">
+      bionic reading is a new method facilitating the reading process by guiding
+      the eyes through text with artificial fixation points.
+    </p>
   </main>
 </Layout>
+
+<script>
+  const bionic = document.querySelectorAll('.bionic');
+  bionic.forEach((paragraph) => {
+    addEventListener('click', () => {
+      const eachWord = (paragraph as HTMLElement).innerText.split(' ');
+      const bionicWord = eachWord?.map((word) => {
+        let boldPart;
+        if (word.length % 2 === 0) {
+          boldPart = word.slice(0, Math.floor(word.length / 2));
+        } else {
+          boldPart = word.slice(0, Math.floor((word.length + 1) / 2));
+        }
+        return `<span class="font-semibold bionic">${boldPart}</span>${word.slice(
+          boldPart.length
+        )}`;
+      });
+      paragraph.innerHTML = bionicWord?.join(' ');
+    });
+  });
+</script>
 
 <style>
   .text-gradient {
