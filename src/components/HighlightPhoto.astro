@@ -1,0 +1,23 @@
+---
+const { src, alt, id } = Astro.props;
+---
+
+<button
+  class={`bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none grayscale focus:grayscale-0 
+        focus:ring focus:ring-violet-300 transition duration-300 ease-in-out h-12`}
+  id={id}
+>
+  <img
+    src={src}
+    alt={alt}
+    class="rounded-md transition duration-300 ease-in-out h-12"
+  />
+</button>
+<script>
+  const buttons = document.querySelectorAll('button');
+  buttons!.forEach((button) =>
+    button.addEventListener('click', () => {
+      console.log('clicked' + button!.id);
+    })
+  );
+</script>

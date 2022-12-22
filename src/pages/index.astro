@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Intro from '../components/Intro.astro';
+import PhotoAndSlideshow from '../components/PhotoAndSlideshow.astro';
 import AboutMe from '../components/AboutMe.astro';
 import DarkMode from '../components/DarkMode.astro';
 ---
@@ -33,7 +33,11 @@ import DarkMode from '../components/DarkMode.astro';
     <DarkMode />
   </nav>
   <main class="max-w-prose flex flex-wrap gap-4">
-    <Intro />
+    <div class="col-span-8">
+      <h1 class="">Hi, I'm Johnny</h1>
+      <h2 class="sub-title">Software Engineer in Seattle 🛸🪡</h2>
+    </div>
+    <PhotoAndSlideshow />
     <!-- <AboutMe /> -->
     <p class="bionic">
       bionic reading is a new method facilitating the reading process by guiding
@@ -42,28 +46,18 @@ import DarkMode from '../components/DarkMode.astro';
   </main>
 </Layout>
 
-<script>
-  const bionic = document.querySelectorAll('.bionic');
-  bionic.forEach((paragraph) => {
-    addEventListener('click', () => {
-      const eachWord = (paragraph as HTMLElement).innerText.split(' ');
-      const bionicWord = eachWord?.map((word) => {
-        let boldPart;
-        if (word.length % 2 === 0) {
-          boldPart = word.slice(0, Math.floor(word.length / 2));
-        } else {
-          boldPart = word.slice(0, Math.floor((word.length + 1) / 2));
-        }
-        return `<span class="font-semibold bionic">${boldPart}</span>${word.slice(
-          boldPart.length
-        )}`;
-      });
-      paragraph.innerHTML = bionicWord?.join(' ');
-    });
-  });
-</script>
-
 <style>
+  h1 {
+    font-size: var(--s2);
+    font-weight: 800;
+    margin: 0;
+  }
+  h2 {
+    font-size: var(--s1);
+    font-weight: 400;
+    color: var(--color-mid);
+    margin: 0;
+  }
   .text-gradient {
     background-image: var(--accent-gradient);
     -webkit-background-clip: text;

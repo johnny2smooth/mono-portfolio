@@ -1,0 +1,22 @@
+---
+import HighlightPhoto from './HighlightPhoto.astro';
+const photos = [
+  { src: '/images/flowers.jpeg', alt: 'flowers', id: '1' },
+  { src: '/images/met-me.png', alt: 'met me', id: '2' },
+  { src: '/images/milo-me.png', alt: 'milo me', id: '3' },
+  { src: '/images/on-a-stoop.png', alt: 'on a stoop', id: '4' },
+];
+---
+
+<div class="col-span-4 gap-3">
+  <div class="flex flex-col items-center">
+    <img src="/images/flowers.jpeg" alt="flowers" class="rounded-md" />
+    <div class="flex gap-3 my-2 py-2 px-4 rounded-lg bg-slate-300 shadow-sm">
+      {
+        photos.map(({ src, alt, id }) => (
+          <HighlightPhoto src={src} alt={alt} id={id} />
+        ))
+      }
+    </div>
+  </div>
+</div>
